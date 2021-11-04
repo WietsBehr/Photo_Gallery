@@ -1,17 +1,34 @@
 from django.shortcuts import render
 from main.models import users
+from passlib.hash import sha256_crypt
 from django.http import HttpResponse
+
 
 def index(response):
     return render(response, "main/base.html", {})
 
-def login(response):
-    return render(response, "main/login.html", {})
+def login(r):
+    if r.method == "POST":
+
+        try:
+
+            email = r.POST['email']
+            password = r.POST['password']
+            row = users.objects.get(email=email)
+            password_hash =  row.password
+            if ( sha256_crypt.verify(password,password_hash)):
+                params = {'name' : row.username}
+                return render(r, "main/gallery.html", params)
+            else:
+                return render(r, "main/BannerERR.html", {'msg': "Password incorrect!"})
+
+        except:
+            return render(r, "main/BannerERR.html", {'msg': "User not found, please register!"})
+    else:
+        return render(r, "main/login.html", {})
+
 
 def register(response):
-    # if response.method == "POST":
-    #     form = users(response.POST)
-    #     form.save()
     return render(response, "main/register.html")
 
 def test(response):
@@ -23,13 +40,15 @@ def SAVEDATA(r):
        name = r.POST['NAME']
        email = r.POST['EMAIL']
        password = r.POST['PASS']
+       password = sha256_crypt.encrypt(password)
 
    except:
        return render(r, "main/err.html", {'err': "finding post data"})
 
-#todo: save data to database
+   #todo: check if user key exist
+   users.objects.create(username =name, email=email, password=password)
 
-   return render(r, "main/SAVEDATA.html", {'name':name})
+   return render(r, "main/login.html", {'name':name})
 
 
 
