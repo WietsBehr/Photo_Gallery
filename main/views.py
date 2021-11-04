@@ -39,21 +39,14 @@ def register(r):
         except:
             return render(r, "main/register.html", {})
 
-            # todo: check if user key exist
-        users.objects.create(username=name, email=email, password=password)
-
+        try:
+            users.objects.get(email=email)
+            return render(r, "main/errorRegister.html", {'msg': "User already exist!"})
+        except:
+            users.objects.create(username=name, email=email, password=password)
         return render(r, "main/login.html", {'name': name})
     else:
         return render(r, "main/register.html", {})
 
 def test(response):
     return render(response, "main/test.html", {})
-
-
-
-
-
-
-
-# def postData(request):
-#     name = users({{form}})
