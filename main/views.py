@@ -34,9 +34,14 @@ def register(r):
             name = r.POST['NAME']
             email = r.POST['EMAIL']
             password = r.POST['PASS']
+            password2 = r.POST['PASS2']
             password = sha256_crypt.encrypt(password)
         except:
             return render(r, "main/register.html", {})
+
+        if (password2 != r.POST['PASS']):
+            return render(r, "main/errorRegistration.html", {'msg': "Passwords do not match"})
+
 
         try:
             if (users.objects.get(email=email)):
