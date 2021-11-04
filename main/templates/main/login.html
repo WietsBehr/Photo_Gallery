@@ -10,7 +10,7 @@
         <div class="col col-10 col-lg-4  rounded-3 bg-grad text-dark p-1 p-md-4 shadow-lg">
                 {% block error_banner %}
                 {% endblock %}
-            <form class="row gy-3" method="post">
+            <form class="row gy-3" action="/login/" method="post">
                 {% csrf_token %}
                     <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
@@ -29,7 +29,7 @@
                       </label>
                     </div>
                     <button class="w-100 btn mb-3 btn-lg btn-primary" type="submit">Sign in</button>
-                <label class="text-light align-content-center fs-5"><a class="btn btn-light" href="register/">Register </a></label>
+                <label class="text-light align-content-center fs-5"><a class="btn btn-light" href="/register/">Register </a></label>
           </form>
         </div>
     </div>

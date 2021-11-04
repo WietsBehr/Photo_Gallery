@@ -28,27 +28,30 @@ def login(r):
         return render(r, "main/login.html", {})
 
 
-def register(response):
-    return render(response, "main/register.html")
+def register(r):
+    if (r.method == "POST"):
+        try:
+            name = r.POST['NAME']
+            email = r.POST['EMAIL']
+            password = r.POST['PASS']
+            password = sha256_crypt.encrypt(password)
+
+        except:
+            return render(r, "main/register.html", {})
+
+            # todo: check if user key exist
+        users.objects.create(username=name, email=email, password=password)
+
+        return render(r, "main/login.html", {'name': name})
+    else:
+        return render(r, "main/register.html", {})
 
 def test(response):
     return render(response, "main/test.html", {})
 
 
-def SAVEDATA(r):
-   try:
-       name = r.POST['NAME']
-       email = r.POST['EMAIL']
-       password = r.POST['PASS']
-       password = sha256_crypt.encrypt(password)
 
-   except:
-       return render(r, "main/err.html", {'err': "finding post data"})
 
-   #todo: check if user key exist
-   users.objects.create(username =name, email=email, password=password)
-
-   return render(r, "main/login.html", {'name':name})
 
 
 
