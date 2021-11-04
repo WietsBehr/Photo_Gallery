@@ -1,0 +1,35 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+    <title>Register</title>
+{% endblock %}
+
+{% block content %}
+    <div class="container pt-md-5 pb-md-5 ">
+    <div class="row text-center h-100 align-items-center justify-content-center ">
+        <div class="col col-10 col-lg-4  rounded-3 bg-grad text-dark p-1 p-md-4 shadow-lg">
+            <form class="row gy-3">
+                    <h1 class="h3 mb-3 fw-normal">Register</h1>
+
+                    <div class="col-12 form-floating">
+                      <input type="text" class="form-control" id="floatingInput" placeholder="Name">
+                      <label for="floatingInput">Name</label>
+                    </div>
+                    <div class="col-12 form-floating">
+                      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                      <label for="floatingInput">Email address</label>
+                    </div>
+                    <div class="col-12 form-floating">
+                      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                      <label for="floatingPassword">Password</label>
+                    </div>
+
+
+                    <button class="w-100 btn mb-3 btn-lg btn-primary" type="submit">Sign up</button>
+                <label class="text-light align-content-center fs-5"><a class="btn btn-light" href='/'>Sign in</a></label>
+          </form>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
