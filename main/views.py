@@ -35,25 +35,18 @@ def register(r):
             email = r.POST['EMAIL']
             password = r.POST['PASS']
             password = sha256_crypt.encrypt(password)
-
         except:
             return render(r, "main/register.html", {})
 
-            # todo: check if user key exist
-        users.objects.create(username=name, email=email, password=password)
+        try:
+            if (users.objects.get(email=email)):
+                return render(r, "main/errorRegistration.html", {'msg': "User already exists!"})
+        except:
+            users.objects.create(username=name, email=email, password=password)
+            return render(r, "main/login.html", {})
 
-        return render(r, "main/login.html", {'name': name})
     else:
         return render(r, "main/register.html", {})
 
 def test(response):
     return render(response, "main/test.html", {})
-
-
-
-
-
-
-
-# def postData(request):
-#     name = users({{form}})
