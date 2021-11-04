@@ -40,7 +40,7 @@ def register(r):
             return render(r, "main/register.html", {})
 
         if (password2 != r.POST['PASS']):
-            return render(r, "main/errorRegistration.html", {'msg': "Passwords do not match"})
+            return render(r, "main/errorRegistration.html", {'msg': "Passwords do not match !" , 'name':name , 'email':email})
 
 
         try:
