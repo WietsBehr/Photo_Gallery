@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ name }}'s Gallary</title>
-</head>
-<body>
-hi {{ name }}
-</body>
-</html>
+{% extends 'main/base.html' %}
+{% block welcomeText %}
+    <h3 class="text-center">Welcome, {{ name }}!</h3>
+{% endblock %}
+{% block regBtn %}
+{% endblock %}
+
+{% block btnToRight %}
+    <a class="btn btn-light" href='/login/'>Log out</a>
+{% endblock %}
+
+{% block content %}
+    <form>
+        <div>
+            <label class="text-light align-content-center fs-5"><a class="btn btn-light" href="/upload/{{ user_id }}/">Upload</a></label>
+        </div>
+    </form>
+{% endblock %}
+

@@ -28,14 +28,22 @@
 <body style="background: url('https://images.pexels.com/photos/1323550/pexels-photo-1323550.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940') center center fixed; background-size: cover">
     <nav class="navbar navbar-expand-sm navbar-light bg-grad" aria-label="Third navbar example">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Photo Gallery</a>
+            <div style="width: 200px;"><h3 class="text-center">Photo Gallery</h3></div>
+
+            <div class="h-25" style="width: 500px;">
+                {% block welcomeText %}
+                {% endblock %}
+            </div>
+
             <div>
 
                 {% block regBtn %}
                 <a class="btn btn-light" href='/register/'>Register</a>
                 {% endblock %}
 
+                {% block btnToRight %}
                 <a class="btn btn-light" href='/login/'>Login</a>
+                {% endblock %}
             </div>
 
 
