@@ -6,34 +6,34 @@
 {% endblock %}
 
 {% block btnToRight %}
-    <a class="btn btn-light" href='/gallery/'>Cancel</a>
+{#    <a class="btn btn-light" href='/gallery/'>Cancel</a>#}
 {% endblock %}
 
 {% block content %}
     <div class="container pt-md-5 pb-md-5 ">
         <div class="row text-center h-100 align-items-center justify-content-center ">
             <div class="col col-10 col-lg-4  rounded-3 bg-grad text-dark p-1 p-md-4 shadow-lg">
-                <form class="row gy-3" method="post" action="" {#enctype="multipart/form-data"#}>
+                <form class="row gy-3" method="post" action="" enctype="multipart/form-data">
                     {% csrf_token %}
     {#                    {% block error_banner %}#}
     {#                    {% endblock %}#}
-
-                        <div class="col-12 form-floating">
-                          <input name="IMAGE" type="file" required  class="form-control">
-                          <label for="floatingInput" class="form-label">Image</label>
-                        </div>
-                        <div class="col-12 form-floating">
-                          <input name="TITLE" type="text" required  class="form-control" id="floatingInput" placeholder="Title" value="{{ title }}">
-                          <label for="floatingInput">Title</label>
-                        </div>
-                        <div class="col-12 form-floating">
-                          <input name="DESCRIPTION" type="text" required  class="form-control" id="floatingInput" placeholder="Description" value="{{ description }}">
-                          <label for="floatingInput">Description</label>
-                        </div>
-                        <div class="col-12 form-floating">
-                          <input name="LOCATION" type="text" required  class="form-control" id="floatingInput" placeholder="Location" value="{{ location }}">
-                          <label for="floatingInput">Location</label>
-                        </div>
+                        {{ form.as_p }}
+{#                        <div class="col-12 form-floating">#}
+{#                          <input name="IMAGE" type="file" required  class="form-control">#}
+{#                          <label for="floatingInput" class="form-label">Image</label>#}
+{#                        </div>#}
+{#                        <div class="col-12 form-floating">#}
+{#                          <input name="TITLE" type="text" required  class="form-control" id="floatingInput" placeholder="Title" value="{{ title }}">#}
+{#                          <label for="floatingInput">Title</label>#}
+{#                        </div>#}
+{#                        <div class="col-12 form-floating">#}
+{#                          <input name="DESCRIPTION" type="text" required  class="form-control" id="floatingInput" placeholder="Description" value="{{ description }}">#}
+{#                          <label for="floatingInput">Description</label>#}
+{#                        </div>#}
+{#                        <div class="col-12 form-floating">#}
+{#                          <input name="LOCATION" type="text" required  class="form-control" id="floatingInput" placeholder="Location" value="{{ location }}">#}
+{#                          <label for="floatingInput">Location</label>#}
+{#                        </div>#}
 
                     <button class="w-100 btn mb-3 btn-lg btn-primary" type="submit">Upload</button>
                 </form>

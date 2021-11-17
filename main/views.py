@@ -1,8 +1,11 @@
+from django.contrib.auth.decorators import login_required
+from django.db import transaction
 from django.shortcuts import render
 from main.models import users
 from main.models import photos
 from passlib.hash import sha256_crypt
 from django.http import HttpResponse
+from main.forms import ImageForm
 
 
 def index(response):
@@ -20,7 +23,6 @@ def login(r):
                 return render(r, "main/gallery.html", params)
             else:
                 return render(r, "main/BannerERR.html", {'msg': "Password incorrect!"})
-
         except:
             return render(r, "main/BannerERR.html", {'msg': "User not found, please register!"})
     else:
@@ -54,23 +56,27 @@ def register(r):
 def test(response):
     return render(response, "main/test.html", {})
 
-def gallery(response):
-    # user = users.objects.get(id=user_id)
-    # params = {'name': user.username}
-    # render(response, "main/upload.html", params)
-    return render(response,"main/gallery.html", {})
+# @login_required
+def gallery(request, user_id):
+    if (request.method == "GET"):
+        # user = users.objects.get(id=user_id)
+        # images = user.photos_set.objects.all()
+        return render(request, "main/upload.html", {'user_id': user_id})
+    # images = user.photos_set.objects.all()
+    return render(request, "main/gallery.html", {})
 
+# @login_required
+# @transaction.atomic
 def upload(request, user_id):
-    if (request.method == "POST"):
-        # try:
-        image = request.POST['IMAGE']
-        title = request.POST['TITLE']
-        description = request.POST['DESCRIPTION']
-        location = request.POST['LOCATION']
-        user = users.objects.get(id=user_id)
-        # except:
-        #     return render(request, "main/upload.html", {})
-        user.photos_set.create(image=image, title=title, description=description, location=location, user=user)
-        return render(request, "main/gallery.html", {})
+    if request.method == 'POST':
+        # user_id = request.POST[user]
+        form = ImageForm(request.POST, request.FILES, request.POST[user_id], initial={'user_id': user_id})
+        # initial = {'users': users}
+        if form.is_valid():
+            form.save()
+            # Get the current instance object to display in the template
+            img_obj = form.instance
+            return render(request, 'main/upload.html', {'form': form, 'img_obj': img_obj})
     else:
-        return render(request, "main/upload.html", {})
+        form = ImageForm()
+    return render(request, 'main/upload.html', {'form': form})
