@@ -1,7 +1,4 @@
 from django.contrib import admin
-from .models import users
-from .models import photos
+from .models import Photo
 
-admin.site.register(users)
-admin.site.register(photos)
-# Register your models here.
+admin.site.register(Photo)

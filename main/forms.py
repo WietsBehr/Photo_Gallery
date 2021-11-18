@@ -1,8 +1,7 @@
-import self as self
 from django import forms
-from .models import photos
+from .models import Photo
 
-class ImageForm(forms.ModelForm):
+class PhotoForm(forms.ModelForm):
     class Meta:
-        model=photos
-        fields=("title", "description", "location", "image")
+        model=Photo
+        fields=("title", "location", "image")

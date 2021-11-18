@@ -1,7 +1,4 @@
 {% extends 'main/base.html' %}
-{% block welcomeText %}
-    <h3 class="text-center">Upload an image {{ name }}</h3>
-{% endblock %}
 {% block regBtn %}
 {% endblock %}
 
@@ -18,22 +15,7 @@
     {#                    {% block error_banner %}#}
     {#                    {% endblock %}#}
                         {{ form.as_p }}
-{#                        <div class="col-12 form-floating">#}
-{#                          <input name="IMAGE" type="file" required  class="form-control">#}
-{#                          <label for="floatingInput" class="form-label">Image</label>#}
-{#                        </div>#}
-{#                        <div class="col-12 form-floating">#}
-{#                          <input name="TITLE" type="text" required  class="form-control" id="floatingInput" placeholder="Title" value="{{ title }}">#}
-{#                          <label for="floatingInput">Title</label>#}
-{#                        </div>#}
-{#                        <div class="col-12 form-floating">#}
-{#                          <input name="DESCRIPTION" type="text" required  class="form-control" id="floatingInput" placeholder="Description" value="{{ description }}">#}
-{#                          <label for="floatingInput">Description</label>#}
-{#                        </div>#}
-{#                        <div class="col-12 form-floating">#}
-{#                          <input name="LOCATION" type="text" required  class="form-control" id="floatingInput" placeholder="Location" value="{{ location }}">#}
-{#                          <label for="floatingInput">Location</label>#}
-{#                        </div>#}
+
 
                     <button class="w-100 btn mb-3 btn-lg btn-primary" type="submit">Upload</button>
                 </form>
